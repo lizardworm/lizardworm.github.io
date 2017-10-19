@@ -1,0 +1,62 @@
+<canvas id="gameCanvas" width="800" height="600"> </canvas>
+<script>
+var canvas;
+var canvasContext;
+var size=50;
+var pos=0;
+var color='white'
+var color1='white';
+var color2='black';
+var color3='red';
+var color4='#00fa00';
+var color5='#DF01D7';
+var color6='#FFFF00';
+var color7='#00FFFF';
+var color8='#FF4000';
+var randomColor;
+canvas = document.getElementById('gameCanvas');
+canvasContext = canvas.getContext('2d');
+canvasContext.fillStyle = 'black';
+canvasContext.fillRect(0,0,canvas.width,canvas.height);
+
+setInterval(function() {
+if (pos > 400){
+  size=50;
+  pos=0;
+  randomColor=Math.floor((Math.random() * 8)+1);
+  if (randomColor == 1) {
+    color = color1;
+  }
+  if (randomColor == 2) {
+    color = color2;
+  }
+  if (randomColor == 3) {
+    color = color3;
+  }
+  if (randomColor == 4) {
+    color = color4;
+  }
+  if (randomColor == 5) {
+    color = color5;
+  }
+  if (randomColor == 6) {
+    color = color5;
+  }
+  if (randomColor == 7) {
+    color = color5;
+  }
+  if (randomColor == 8) {
+    color = color5;
+  }
+}else {
+  size=size+5;
+  pos=pos+5;
+}
+  anime(color);
+}, 1000/100);
+
+function anime(color){
+  canvasContext.fillStyle = color;
+  canvasContext.fillRect(pos,pos,size,size);
+}
+</script>
