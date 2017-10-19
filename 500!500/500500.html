@@ -1,0 +1,66 @@
+<canvas id='gameCanvas' width="500" height="700"></canvas>
+<script>
+  var canvas;
+  var canvasContext;
+  var shipX = 250;
+  var shipY = 700;
+  var bulletY = 450;
+  var bulletSpeed=-2;
+
+  function calculateMousePos(evt) {
+  	var rect = canvas.getBoundingClientRect();
+  	var root = document.documentElement;
+  	var mouseX = evt.clientX - rect.left - root.scrollLeft;
+  	var mouseY = evt.clientY - rect.top - root.scrollTop;
+  	return {
+  		x:mouseX,
+  		y:mouseY
+
+  	}
+
+  }
+
+  window.onload = function() {
+    canvas = document.getElementById('gameCanvas');
+    canvasContext = canvas.getContext('2d');
+
+    var framesPerSecond = 30;
+  	setInterval(function() {
+
+      drawObjects();
+  	}, 1000/framesPerSecond);
+    canvas.addEventListener('mousemove',
+			function(evt) {
+				var mousePos = calculateMousePos(evt);
+				shipX = mousePos.x;
+			}
+	   )
+     canvas.addEventListener('click',
+ 			bulletFlight)
+  }
+
+
+
+
+  function bulletFlight(){
+      bulletY = 450;
+      console.log('frezz');
+  }
+
+  function drawObjects() {
+    canvasContext.fillStyle= '#300210';
+    canvasContext.fillRect(0,0,canvas.width,canvas.height);
+
+    canvasContext.fillStyle= '#998855';
+    canvasContext.fillRect(shipX-20,shipY-65,40,60);
+    canvasContext.fillRect(shipX-10,shipY-90,20,25);
+    canvasContext.fillRect(shipX-4,shipY-110,8,25);
+    canvasContext.fillRect(shipX-40,shipY-40,80,30);
+    canvasContext.fillRect(shipX-70,shipY-30,140,10);
+    canvasContext.fillRect(shipX-80,shipY-45,15,30);
+    canvasContext.fillRect(shipX+65,shipY-45,15,30);
+
+    canvasContext.fillRect(shipX-3,bulletY+bulletSpeed,6,6);
+  }
+
+</script>
