@@ -1,0 +1,90 @@
+<canvas id='gC' width=500 height=500></canvas>
+<script>
+var canvas;
+var canvasContext;
+var xPos = 250;
+var yPos =5;
+var xSpeed = 5;
+var ySpeed = 5;
+var colorBackX = 0;
+var colorBackY = -500;
+var colorBackYSpeed = 0;
+var colorBackX2 = 500;
+var colorBackY2 = 0;
+var colorBackX2Speed = 0;
+var colorBackX3 = 0;
+var colorBackY3 = 500;
+var colorBackY3Speed = 0;
+var colorBackX4 = -500;
+var colorBackY4 = 0;
+var colorBackX4Speed = 0;
+
+
+canvas = document.getElementById('gC');
+canvasContext = canvas.getContext('2d');
+canvasContext.fillStyle = 'black';
+canvasContext.fillRect(0,0,canvas.width,canvas.height);
+
+setInterval(function() {
+	
+
+moveAll();
+drawAll();
+
+},1000/60)
+
+function moveAll(){
+	if (xPos>490){
+		xSpeed=-xSpeed;
+		colorBackX2= 500;
+		colorBackX2Speed=10;
+	}
+	if (xPos<0){
+		xSpeed=-xSpeed;
+		colorBackX4 = -500;
+		colorBackX4Speed = 10;
+	}
+
+	if (yPos>490){
+		ySpeed=-ySpeed;
+		colorBackY3=500;
+		colorBackY3Speed = 10;
+	}
+	if (yPos<0){
+		ySpeed=-ySpeed;
+		colorBackY= -500;
+		colorBackYSpeed=10;
+	} 
+	xPos = xPos+xSpeed;
+	yPos = yPos+ySpeed;
+	
+	colorBackY= colorBackY + colorBackYSpeed;
+	colorBackX2= colorBackX2 - colorBackX2Speed;
+	colorBackY3= colorBackY3 - colorBackY3Speed;
+	colorBackX4= colorBackX4 + colorBackX4Speed;
+
+	
+}
+
+function drawAll(){
+	canvasContext.fillStyle = 'black';
+	canvasContext.fillRect(0,0,canvas.width,canvas.height);
+	
+	canvasContext.fillStyle = 'red';
+	canvasContext.fillRect(colorBackX,colorBackY,canvas.width,canvas.height);
+	
+	canvasContext.fillStyle = 'blue';
+	canvasContext.fillRect(colorBackX2,colorBackY2,canvas.width,canvas.height);
+	
+	canvasContext.fillStyle = 'green';
+	canvasContext.fillRect(colorBackX3,colorBackY3,canvas.width,canvas.height);
+
+	canvasContext.fillStyle = 'yellow';
+	canvasContext.fillRect(colorBackX4,colorBackY4,canvas.width,canvas.height);
+	
+	canvasContext.fillStyle	= 'white';
+	canvasContext.fillRect(xPos,yPos,10,10);
+	
+}
+
+</script>
